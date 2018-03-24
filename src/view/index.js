@@ -1,0 +1,1 @@
+export const renderTodos = todos => todos.map(todo => `<li>${todo.text}</li>`).join('');
