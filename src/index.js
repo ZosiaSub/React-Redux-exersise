@@ -1,21 +1,20 @@
-import {createStore} from 'redux';
+import React from 'react';
+import { render } from 'react-dom'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
+import rootReducer from './reducers';
 
-import {addTodo} from "./actions/actions";
-import {todoReducer} from "./reducer/reducer";
-import {renderTodos} from "./view/index";
+import App from './components/app';
 
-let store = createStore(todoReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-document.querySelector('#todoAddSubmit').addEventListener('click', () => {
-  const newCheck = document.querySelector('#todoAddInput').value;
-  if(newCheck) {
-    store.dispatch(addTodo(newCheck)); //dispatch -podaje akcję do reducera
-  }
-  document.querySelector('#todoChecks').value = null;
-});
-
-const unsubscribe = store.subscribe(() => { //przekazuje callback przy każdym zmianie stanu aplikacji
-  document.querySelector('#todoChecks').innerHTML = renderTodos(store.getState().todos); //store.getState zwraca nam aktualny stan
-})
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+ 
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#container')
+);
