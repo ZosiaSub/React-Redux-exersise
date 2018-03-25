@@ -1,4 +1,4 @@
-import {ADD_TODO, DECRESE_COUNTER, INCREASE_COUNTER } from './types';
+import {ADD_TODO, DECREASE_COUNTER, INCREASE_COUNTER } from './types';
 
 export const addTodo = (text) => {
     return {
@@ -7,18 +7,18 @@ export const addTodo = (text) => {
     };
 };
 
-const modifyValue = 1
+const modifyValue = 1;
 
 export const decreaseCounter = () => {
     return {
-        type: DECRESE_COUNTER,
-        decreaseBy: modifyValue
+        type: DECREASE_COUNTER,
+        modifyValue
     }
 };
 
 export const increaseCounter = () => {
     return {
         type: INCREASE_COUNTER,
-        increaseBy: modifyValue
+        modifyValue
     }
 }

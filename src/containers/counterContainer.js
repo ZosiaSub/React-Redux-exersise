@@ -4,8 +4,8 @@ import { increaseCounter, decreaseCounter} from '../actions/index';
 import CounterComponent from '../components/counterComponent';
 
 const mapDispatchToprops = dispatch => ({
-    increaseCounter: counter => dispatch(increaseCounter(counter)),
-    decreaseCounter: counter => dispatch(decreaseCounter(counter))
+    increaseCounter: () => dispatch(increaseCounter()),
+    decreaseCounter: () => dispatch(decreaseCounter())
 });
 
 const mapStateToProps = state => ({
@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-    undefined,
-    mapDispatchToprops,
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToprops
 )(CounterComponent);
